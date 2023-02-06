@@ -1,98 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html>
+  <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <style>
-        html {background-image: linear-gradient(to top, #d5dee7 0%, #ffafbd 0%, #c9ffbf 100%);}
-        .chat-content { height: 620px; overflow-y: scroll; }
-        .line { margin-top: 10px; display: flex;}
-        .chat-box {background: rgb(255, 242, 59); padding: 5px; max-width: 200px; border-radius: 7px; font-size: 17px;}
-        .mine {margin-left: auto;}
-    </style>
-    <div class="chat-content">
-        <div class="line">
-            <span class="chat-box">안녕?</span>
-        </div>
-        <div class="line">
-            <span class="chat-box mine">안녕!</span>
-        </div>
-    </div>
-    <input class="chat-box" id="input">
-    <button id="send">전송</button>
-
-
-</body>
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+    <header>Header Content</header>
+    <nav>Navigation Content</nav>
+    <main>Main Content</main>
+    <aside>Aside Content</aside>
+    <footer>Footer Content</footer>
+  </body>
 </html>
-
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-<script>
-    document.querySelector('#send').addEventListener('click', function(){
-        var userTemplate = `<div class="line">
-            <span class="chat-box mine">${ document.querySelector('#input').value }</span>
-            </div>`;
-        document.querySelector('.chat-content').insertAdjacentHTML('beforeend', userTemplate);
-    
-
-    // REST API calling library
-    const axios = require('axios');
-
-    // REST API Key value input
-    const REST_API_KEY = '${94c513ac26370fe7d8e48c4a3c8baeec}';
-
-    // Method declaration for calling KoGPT API
-    // Set default value for each parameter
-    const kogpt_api = async (prompt, max_tokens = 1, temperature = 1.0, top_p = 1.0, n = 1) => {
-        const response = await axios.post(
-            'https://api.kakaobrain.com/v1/inference/kogpt/generation',
-            {
-                'prompt': prompt,
-                'max_tokens': max_tokens,
-                'temperature': temperature,
-                'top_p': top_p,
-                'n': n
-            },
-            {
-                headers: {
-                    'Authorization': 'KakaoAK ' + REST_API_KEY,
-                    'Content-Type': 'application/json'
-                }
-            }
-        );
-        return response.data;
-    };
-
-    // Call kogpt_api() method by delivering the parameters
-    kogpt_api(
-        prompt = document.querySelector('#input').value,
-        max_tokens = 32,
-        temperature = 1.0,
-        top_p = 1.0,
-        n = 3
-    ).then((response) => {
-        console.log(response.data.choices[0].text)
-        var template = `<div class="line">
-          <span class="chat-box">${ response.data.choices[0].text }</span>
-        </div>`
-        document.querySelector('.chat-content').insertAdjacentHTML('beforeend', template);
-    })
-    });
-</script>
-
-<script>
-    document.querySelector('#input').addEventListener('keyup', function(e){
-        if(e.keyCode === 13){
-            document.querySelector('#send').click();
-            document.querySelector('#input').value = '';
-        }
-    });
-
-    document.querySelector('#send').addEventListener('click', function(){
-        document.querySelector('#input').value = '';
-    });
-</script>
