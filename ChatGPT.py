@@ -1,7 +1,7 @@
 from PyKakao import KoGPT
 
 # KoGPT API 인스턴스 생성
-GPT = KoGPT(service_key = "Kakao Developers에서 발급받은 API Key")
+GPT = KoGPT(service_key = "94c513ac26370fe7d8e48c4a3c8baeec")
 
 # 문장을 input()을 활용하여 입력받기
 prompt = input("문장을 입력하세요: ")
