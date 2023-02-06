@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>KoGPT-Project</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'><link rel="stylesheet" href="Chatfile.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container">
+    <div class="header">
+        <div class="logo">KoGPT Chat</div>
+        <div class="subtext">Connect to KoChat.</div>
+    </div>
+    <div class="contact-info">
+        <div class="avatar">
+            <img src="GPT.png" alt="Avatar">
+        </div>
+        <div class="user-info">
+            KoChat
+        </div>
+    </div>
+    <div class="chat-box">
+        <div class="line">
+            <div class="message secondary">Lorem ipsum dolor sit amet. <div class="timestamp">02:11</div></div>
+        </div>
+        <div class="line">
+            <div class="message primary">Lorem ipsum dolor sit amet. <div class="timestamp">02:11</div></div>
+        </div>
+    </div>
+    <div class="input-area">
+        <input type="text" name="" id="input">
+        <button><i class="fas fa-paper-plane" id="send"></i></button>
+    </div>
+</div>
+<!-- partial -->
+  
+</body>
+</html>
+
+
+<script>
+    // 보내기 버튼 클릭 시 인풋에 입력된 값을 message primary의 위치에 넣어주기, getTime() 함수를 통해 시간 표시
+    document.querySelector('#send').addEventListener('click', function(){
+        const input = document.querySelector('#input').value;
+        const chatBox = document.querySelector('.chat-box');
+        const line = document.createElement('div');
+        const message = document.createElement('div');
+        const timestamp = document.createElement('div');
+        line.classList.add('line');
+        message.classList.add('message');
+        message.classList.add('primary');
+        timestamp.classList.add('timestamp');
+        message.innerText = input;
+        timestamp.innerText = getTime();
+        message.appendChild(timestamp);
+        line.appendChild(message);
+        chatBox.appendChild(line);
+    });
+</script>
+
+<script>
+    document.querySelector('#input').addEventListener('keyup', function(e){
+        if(e.keyCode === 13){
+            document.querySelector('#send').click();
+            document.querySelector('#input').value = '';
+        }
+    });
+
+    document.querySelector('#send').addEventListener('click', function(){
+        document.querySelector('#input').value = '';
+    });
+
+    // 실시간 시간 표시, 시간과 분만 표시
+    function getTime(){
+        const date = new Date();
+        const hour = date.getHours();
+        const minute = date.getMinutes();
+        return `${hour}:${minute}`;
+    }
+
+
+</script>
