@@ -6,7 +6,7 @@ from ChatGPT import chatbot
 
 # Create your views here.
 def home(request):
-   answer = chatbot("안녕하세요")
+   answer = chatbot("자기소개해줘!")
    return render(request, 'Chatfile.html', {'answer': answer})
 
    
