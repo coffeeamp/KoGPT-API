@@ -1,7 +1,7 @@
 from PyKakao import KoGPT
 
 # KoGPT API 인스턴스 생성
-GPT = KoGPT(service_key = "d8fc586c23874c245e239eac03985e25")
+GPT = KoGPT(service_key = "YOUR_KEY")
 
 prompt = ''
 
