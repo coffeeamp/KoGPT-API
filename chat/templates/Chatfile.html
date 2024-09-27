@@ -16,7 +16,7 @@
     </div>
     <div class="contact-info">
         <div class="avatar">
-            <img src="GPT.png" alt="Avatar">
+            <img src="https://i.ibb.co/zSnd2fy/GPT.png" alt="Avatar">
         </div>
         <div class="user-info">
             KoChat
@@ -30,9 +30,12 @@
             <div class="message primary">Lorem ipsum dolor sit amet. <div class="timestamp">02:11</div></div>
         </div>
     </div>
+    <form method="post" action=".">
+        {% csrf_token %}
     <div class="input-area">
-        <input type="text" name="" id="input">
-        <button><i class="fas fa-paper-plane" id="send"></i></button>
+        <input type="text" name="input" id="input" placeholder="입력하세요">
+        <button  type="submit"><i class="fas fa-paper-plane" id="send"></i> </button>
+    </form>
     </div>
 </div>
 <!-- partial -->
@@ -59,6 +62,8 @@
         line.appendChild(message);
         chatBox.appendChild(line);
     });
+
+    
 </script>
 
 <script>
